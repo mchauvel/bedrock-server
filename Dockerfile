@@ -9,6 +9,7 @@ RUN apt-get update && \
 EXPOSE 19132/udp
 
 # Volume configuration
+RUN rm /bedrock-server/server.properties
 VOLUME ["/bedrock-server/server.properties", "/bedrock-server/ops.json", "/bedrock-server/whitelist.json", "/bedrock-server/worlds"]
 
 WORKDIR /bedrock-server
