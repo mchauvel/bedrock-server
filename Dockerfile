@@ -8,8 +8,6 @@ RUN apt-get update && \
 
 EXPOSE 19132/udp
 
-VOLUME /bedrock-server/server.properties
-
 WORKDIR /bedrock-server
 ENV LD_LIBRARY_PATH=.
 CMD ./bedrock_server
