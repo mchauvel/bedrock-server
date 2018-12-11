@@ -6,11 +6,18 @@ RUN apt-get update && \
     unzip bedrock-server.zip -d bedrock-server && \
     rm bedrock-server.zip
 	
-EXPOSE 19132/udp
+EXPOSE 19132:19132/udp
+
+RUN mv /bedrock-server/server.properties /bedrock-server/server.properties.default
+RUN touch ops.json
+RUN touch whitelist.json
+RUN mkdir -p worlds
 
 # Volume configuration
-RUN rm /bedrock-server/server.properties
 VOLUME ["/bedrock-server/server.properties", "/bedrock-server/ops.json", "/bedrock-server/whitelist.json", "/bedrock-server/worlds"]
+
+# Copy server.properties only if not exist
+RUN cp -n /bedrock-server/server.properties.default /bedrock-server/server.properties
 
 WORKDIR /bedrock-server
 ENV LD_LIBRARY_PATH=.
