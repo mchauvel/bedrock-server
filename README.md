@@ -1,0 +1,1 @@
+# Minecraft BedRock Server for Docker
