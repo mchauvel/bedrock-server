@@ -6,6 +6,10 @@ if [ ! -f "server.properties" ]; then
    mv server.properties.default server.properties
 fi
 
+if [ ! -f "permissions.json" ]; then
+   mv permissions.json.default permissions.json
+fi
+
 if [ -f "bedrock_server" ]; then
    echo "Executing server"
    LD_LIBRARY_PATH=. ./bedrock_server

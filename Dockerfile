@@ -19,8 +19,12 @@ RUN rm bedrock-server.zip
 
 RUN su - bedrock -c "mkdir -p bedrock_server/data/worlds"
 RUN chown -R bedrock:bedrock /home/bedrock/bedrock_server/data/worlds
+
 RUN cp bedrock_server/server.properties bedrock_server/server.properties.default
 RUN rm bedrock_server/server.properties
+
+RUN cp bedrock_server/permissions.json bedrock_server/permissions.json.default
+RUN rm bedrock_server/permissions.json
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -36,7 +40,7 @@ USER bedrock
 ENV LD_LIBRARY_PATH=.
 
 # Volume configuration
-VOLUME ["/home/bedrock/bedrock_server/server.properties", "/home/bedrock/bedrock_server/ops.json", "/home/bedrock/bedrock_server/whitelist.json", "/home/bedrock/bedrock_server/worlds"]
+VOLUME ["/home/bedrock/bedrock_server/server.properties", "/home/bedrock/bedrock_server/permissions.json", "/home/bedrock/bedrock_server/whitelist.json", "/home/bedrock/bedrock_server/worlds"]
 
 # Added bash so you can drop to a shell to resolve errors
 ENTRYPOINT /home/bedrock/startup.sh && /bin/bash
