@@ -30,7 +30,7 @@ RUN ["chmod", "+x", "/home/bedrock/startup.sh"]
 ENV LD_LIBRARY_PATH=.
 
 # Volume configuration
-VOLUME ["/home/bedrock/worlds", "/home/bedrock/server.properties"]
+VOLUME ["/home/bedrock/worlds"]
 
 # Added bash so you can drop to a shell to resolve errors
 ENTRYPOINT /home/bedrock/startup.sh
