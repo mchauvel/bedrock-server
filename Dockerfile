@@ -20,6 +20,7 @@ RUN apt-get update && \
 
 	mv /home/bedrock/server.properties /home/bedrock/server.properties.default && \
 	mv /home/bedrock/permissions.json /home/bedrock/permissions.json.default && \
+	mv /home/bedrock/whitelist.json /home/bedrock/whitelist.json.default && \
 
 	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
