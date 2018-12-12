@@ -14,17 +14,14 @@ RUN apt-get update && \
 
 	curl https://minecraft.azureedge.net/bin-linux/bedrock-server-1.8.0.24.zip --output bedrock-server.zip && \
 	useradd -ms /bin/bash bedrock && \
-	unzip bedrock-server.zip -d bedrock_server && \
+	unzip bedrock-server.zip -d /home/bedrock/bedrock_server && \
 	rm bedrock-server.zip && \
-
+	ls -al
 	su - bedrock -c "mkdir -p bedrock_server/data/worlds" && \
 	chown -R bedrock:bedrock /home/bedrock/bedrock_server/data/worlds && \
 
-#	cp bedrock_server/server.properties bedrock_server/server.properties.default && \
-#	rm bedrock_server/server.properties && \
-
-#	cp bedrock_server/permissions.json bedrock_server/permissions.json.default && \
-#	rm bedrock_server/permissions.json && \
+	mv bedrock_server/server.properties bedrock_server/server.properties.default && \
+	mv bedrock_server/permissions.json bedrock_server/permissions.json.default && \
 
 	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
