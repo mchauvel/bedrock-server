@@ -3,11 +3,11 @@
 cd /home/bedrock/bedrock_server
 
 if [ ! -f "server.properties" ]; then
-   mv server.properties.default server.properties
+   cp server.properties.default server.properties
 fi
 
 if [ ! -f "permissions.json" ]; then
-   mv permissions.json.default permissions.json
+   cp permissions.json.default permissions.json
 fi
 
 if [ -f "bedrock_server" ]; then
