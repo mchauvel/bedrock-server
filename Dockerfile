@@ -9,19 +9,19 @@ FROM phusion/baseimage:0.11
 CMD ["/sbin/my_init"]
 
 # ...put your own build instructions here...
-RUN apt-get update && \
-	apt-get -y install unzip libcurl4 curl && \
+RUN apt-get update
+RUN apt-get -y install unzip libcurl4 curl
 
-	useradd -ms /bin/bash bedrock && \
-	curl https://minecraft.azureedge.net/bin-linux/bedrock-server-1.8.0.24.zip --output bedrock-server.zip && \
-    unzip bedrock-server.zip -d bedrock_server && \
-    rm bedrock-server.zip && \
+RUN useradd -ms /bin/bash bedrock
+RUN curl https://minecraft.azureedge.net/bin-linux/bedrock-server-1.8.0.24.zip --output bedrock-server.zip
+RUN unzip bedrock-server.zip -d bedrock_server
+RUN rm bedrock-server.zip
 
-	su - bedrock -c "mkdir -p bedrock_server/data/worlds" && \
-	chown -R bedrock:bedrock /home/bedrock/bedrock_server/data/worlds && \
-	mv /home/bedrock/bedrock_server/server.properties /home/bedrock/bedrock_server/server.properties.default && \
+RUN su - bedrock -c "mkdir -p bedrock_server/data/worlds"
+RUN chown -R bedrock:bedrock /home/bedrock/bedrock_server/data/worlds
+RUN mv /home/bedrock/bedrock_server/server.properties /home/bedrock/bedrock_server/server.properties.default
 
-	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 EXPOSE 19132:19132/udp
 
