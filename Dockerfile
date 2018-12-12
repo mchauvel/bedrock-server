@@ -16,12 +16,11 @@ RUN apt-get update && \
 	useradd -ms /bin/bash bedrock && \
 	unzip bedrock-server.zip -d /home/bedrock/bedrock_server && \
 	rm bedrock-server.zip && \
-	ls -al && \
-	su - bedrock -c "mkdir -p bedrock_server/data/worlds" && \
+	su - bedrock -c "mkdir -p /home/bedrock/bedrock_server/data/worlds" && \
 	chown -R bedrock:bedrock /home/bedrock/bedrock_server/data/worlds && \
 
-	mv bedrock_server/server.properties bedrock_server/server.properties.default && \
-	mv bedrock_server/permissions.json bedrock_server/permissions.json.default && \
+	mv /home/bedrock/bedrock_server/server.properties /home/bedrock/bedrock_server/server.properties.default && \
+	mv /home/bedrock/bedrock_server/permissions.json /home/bedrock/bedrock_server/permissions.json.default && \
 
 	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
