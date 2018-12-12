@@ -43,4 +43,4 @@ ENV LD_LIBRARY_PATH=.
 VOLUME ["/home/bedrock/bedrock_server/server.properties", "/home/bedrock/bedrock_server/permissions.json", "/home/bedrock/bedrock_server/whitelist.json", "/home/bedrock/bedrock_server/worlds"]
 
 # Added bash so you can drop to a shell to resolve errors
-ENTRYPOINT /home/bedrock/startup.sh
+ENTRYPOINT /home/bedrock/startup.sh && /bin/bash
