@@ -20,11 +20,11 @@ RUN apt-get update && \
 	su - bedrock -c "mkdir -p bedrock_server/data/worlds" && \
 	chown -R bedrock:bedrock /home/bedrock/bedrock_server/data/worlds && \
 
-	cp bedrock_server/server.properties bedrock_server/server.properties.default && \
-	rm bedrock_server/server.properties && \
+#	cp bedrock_server/server.properties bedrock_server/server.properties.default && \
+#	rm bedrock_server/server.properties && \
 
-	cp bedrock_server/permissions.json bedrock_server/permissions.json.default && \
-	rm bedrock_server/permissions.json && \
+#	cp bedrock_server/permissions.json bedrock_server/permissions.json.default && \
+#	rm bedrock_server/permissions.json && \
 
 	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
