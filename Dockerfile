@@ -13,14 +13,13 @@ RUN apt-get update && \
 	apt-get -y install unzip libcurl4 curl && \
 
 	curl https://minecraft.azureedge.net/bin-linux/bedrock-server-1.8.0.24.zip --output bedrock-server.zip && \
-	useradd -ms /bin/bash bedrock && \
-	unzip bedrock-server.zip -d /home/bedrock/bedrock_server && \
-	rm bedrock-server.zip && \
-	su - bedrock -c "mkdir -p /home/bedrock/bedrock_server/data/worlds" && \
-	chown -R bedrock:bedrock /home/bedrock/bedrock_server/data/worlds && \
 
-	mv /home/bedrock/bedrock_server/server.properties /home/bedrock/bedrock_server/server.properties.default && \
-	mv /home/bedrock/bedrock_server/permissions.json /home/bedrock/bedrock_server/permissions.json.default && \
+	unzip bedrock-server.zip -d /home/bedrock && \
+	rm bedrock-server.zip && \
+	mkdir -p /home/bedrock/data/worlds && \
+
+	mv /home/bedrock/server.properties /home/bedrock/server.properties.default && \
+	mv /home/bedrock/permissions.json /home/bedrock/permissions.json.default && \
 
 	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -30,13 +29,11 @@ EXPOSE 19132:19132/udp
 COPY ./startup.sh /home/bedrock
 RUN ["chmod", "+x", "/home/bedrock/startup.sh"]
 
-# If you enable the USER below, there will be permission issues with shared volumes
-# USER bedrock
 
 ENV LD_LIBRARY_PATH=.
 
 # Volume configuration
-# VOLUME ["/home/bedrock/bedrock_server/server.properties", "/home/bedrock/bedrock_server/permissions.json", "/home/bedrock/bedrock_server/whitelist.json", "/home/bedrock/bedrock_server/worlds"]
+# VOLUME ["/home/bedrock/server.properties", "/home/bedrock/permissions.json", "/home/bedrock/whitelist.json", "/home/bedrock/data/worlds"]
 
 # Added bash so you can drop to a shell to resolve errors
-ENTRYPOINT /home/bedrock/startup.sh && /bin/bash
+ENTRYPOINT /home/bedrock/startup.sh

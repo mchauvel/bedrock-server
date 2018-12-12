@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd /home/bedrock/bedrock_server
+cd /home/bedrock
 
 if [ ! -f "server.properties" ]; then
    cp server.properties.default server.properties
