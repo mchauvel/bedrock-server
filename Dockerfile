@@ -16,7 +16,7 @@ RUN apt-get update && \
 	useradd -ms /bin/bash bedrock && \
 	unzip bedrock-server.zip -d /home/bedrock/bedrock_server && \
 	rm bedrock-server.zip && \
-	ls -al
+	ls -al && \
 	su - bedrock -c "mkdir -p bedrock_server/data/worlds" && \
 	chown -R bedrock:bedrock /home/bedrock/bedrock_server/data/worlds && \
 
