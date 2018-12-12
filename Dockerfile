@@ -9,24 +9,24 @@ FROM phusion/baseimage:0.11
 CMD ["/sbin/my_init"]
 
 # ...put your own build instructions here...
-RUN apt-get update
-RUN apt-get -y install unzip libcurl4 curl
+RUN apt-get update && \
+	apt-get -y install unzip libcurl4 curl && \
 
-RUN curl https://minecraft.azureedge.net/bin-linux/bedrock-server-1.8.0.24.zip --output bedrock-server.zip
-RUN useradd -ms /bin/bash bedrock
-RUN unzip bedrock-server.zip -d bedrock_server
-RUN rm bedrock-server.zip
+	curl https://minecraft.azureedge.net/bin-linux/bedrock-server-1.8.0.24.zip --output bedrock-server.zip && \
+	useradd -ms /bin/bash bedrock && \
+	unzip bedrock-server.zip -d bedrock_server && \
+	rm bedrock-server.zip && \
 
-RUN su - bedrock -c "mkdir -p bedrock_server/data/worlds"
-RUN chown -R bedrock:bedrock /home/bedrock/bedrock_server/data/worlds
+	su - bedrock -c "mkdir -p bedrock_server/data/worlds" && \
+	chown -R bedrock:bedrock /home/bedrock/bedrock_server/data/worlds && \
 
-RUN cp bedrock_server/server.properties bedrock_server/server.properties.default
-RUN rm bedrock_server/server.properties
+	cp bedrock_server/server.properties bedrock_server/server.properties.default && \
+	rm bedrock_server/server.properties && \
 
-RUN cp bedrock_server/permissions.json bedrock_server/permissions.json.default
-RUN rm bedrock_server/permissions.json
+	cp bedrock_server/permissions.json bedrock_server/permissions.json.default && \
+	rm bedrock_server/permissions.json && \
 
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 EXPOSE 19132:19132/udp
 
