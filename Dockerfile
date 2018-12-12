@@ -18,10 +18,6 @@ RUN apt-get update && \
 	rm bedrock-server.zip && \
 	mkdir -p /home/bedrock/data/worlds && \
 
-	mv /home/bedrock/server.properties /home/bedrock/server.properties.default && \
-	mv /home/bedrock/permissions.json /home/bedrock/permissions.json.default && \
-	mv /home/bedrock/whitelist.json /home/bedrock/whitelist.json.default && \
-
 	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 EXPOSE 19132:19132/udp
@@ -34,7 +30,7 @@ RUN ["chmod", "+x", "/home/bedrock/startup.sh"]
 ENV LD_LIBRARY_PATH=.
 
 # Volume configuration
-VOLUME ["/home/bedrock/server.properties", "/home/bedrock/permissions.json", "/home/bedrock/whitelist.json", "/home/bedrock/data/worlds"]
+VOLUME ["/home/bedrock/data/worlds"]
 
 # Added bash so you can drop to a shell to resolve errors
 ENTRYPOINT /home/bedrock/startup.sh
