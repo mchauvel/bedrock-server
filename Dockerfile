@@ -35,12 +35,12 @@ COPY ./startup.sh /home/bedrock
 RUN ["chmod", "+x", "/home/bedrock/startup.sh"]
 
 # If you enable the USER below, there will be permission issues with shared volumes
-USER bedrock
+# USER bedrock
 
 ENV LD_LIBRARY_PATH=.
 
 # Volume configuration
-VOLUME ["/home/bedrock/bedrock_server/server.properties", "/home/bedrock/bedrock_server/permissions.json", "/home/bedrock/bedrock_server/whitelist.json", "/home/bedrock/bedrock_server/worlds"]
+# VOLUME ["/home/bedrock/bedrock_server/server.properties", "/home/bedrock/bedrock_server/permissions.json", "/home/bedrock/bedrock_server/whitelist.json", "/home/bedrock/bedrock_server/worlds"]
 
 # Added bash so you can drop to a shell to resolve errors
 ENTRYPOINT /home/bedrock/startup.sh && /bin/bash
