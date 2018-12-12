@@ -16,7 +16,7 @@ RUN apt-get update && \
 
 	unzip bedrock-server.zip -d /home/bedrock && \
 	rm bedrock-server.zip && \
-	mkdir -p /home/bedrock/data/worlds && \
+	mkdir -p /home/bedrock/worlds && \
 
 	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -30,7 +30,7 @@ RUN ["chmod", "+x", "/home/bedrock/startup.sh"]
 ENV LD_LIBRARY_PATH=.
 
 # Volume configuration
-VOLUME ["/home/bedrock/data/worlds"]
+VOLUME ["/home/bedrock/worlds", "/home/bedrock/server.properties"]
 
 # Added bash so you can drop to a shell to resolve errors
 ENTRYPOINT /home/bedrock/startup.sh
