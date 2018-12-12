@@ -12,14 +12,15 @@ CMD ["/sbin/my_init"]
 RUN apt-get update
 RUN apt-get -y install unzip libcurl4 curl
 
-RUN useradd -ms /bin/bash bedrock
 RUN curl https://minecraft.azureedge.net/bin-linux/bedrock-server-1.8.0.24.zip --output bedrock-server.zip
+RUN useradd -ms /bin/bash bedrock
 RUN unzip bedrock-server.zip -d bedrock_server
 RUN rm bedrock-server.zip
 
 RUN su - bedrock -c "mkdir -p bedrock_server/data/worlds"
 RUN chown -R bedrock:bedrock /home/bedrock/bedrock_server/data/worlds
-RUN mv /home/bedrock/bedrock_server/server.properties /home/bedrock/bedrock_server/server.properties.default
+RUN cp bedrock_server/server.properties bedrock_server/server.properties.default
+RUN rm bedrock_server/server.properties
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
