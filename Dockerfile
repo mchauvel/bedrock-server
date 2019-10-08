@@ -12,7 +12,7 @@ CMD ["/sbin/my_init"]
 RUN apt-get update && \
 	apt-get -y install unzip libcurl4 curl && \
 
-	curl https://minecraft.azureedge.net/bin-linux/bedrock-server-1.8.1.2.zip --output bedrock-server.zip && \
+	curl https://minecraft.azureedge.net/bin-linux/bedrock-server-1.12.1.1.zip --output bedrock-server.zip && \
 
 	unzip bedrock-server.zip -d /home/bedrock && \
 	rm bedrock-server.zip && \
